@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+//Usuário
+model User {
+  id       String  @id @default(uuid())
+  name     String
+  email    String
+  password String
+  Lista    Lista[]
+}
+
+//Mercado
+model Mercado {
+  id           String         @id @default(uuid())
+  name         String
+  ListaProduto ListaProduto[]
+  Produto      Produto[]
+}
+
+//Produto
+model Produto {
+  id           String         @id @default(uuid())
+  name         String
+  //mostrar menor valor
+  menorPreco   Decimal? //permite nulo
+  //mostrar mercado com menor valor
+  mercadoID    String?
+  mercado      Mercado?       @relation(fields: [mercadoID], references: [id])
+  ListaProduto ListaProduto[]
+}
+
+//Lista
+model Lista {
+  id           String         @id @default(uuid())
+  name         String
+  userId       String
+  user         User           @relation(fields: [userId], references: [id])
+  ListaProduto ListaProduto[]
+}
+
+//Lista Produto
+model ListaProduto {
+  id                String   @id @default(uuid())
+  produtoID         String
+  mercadoID         String
+  listaID           String
+  produto           Produto  @relation(fields: [produtoID], references: [id])
+  mercado           Mercado  @relation(fields: [mercadoID], references: [id])
+  lista             Lista    @relation(fields: [listaID], references: [id])
+  dataCompra        DateTime
+  dataInicioConsumo DateTime
+  dataFimConsumo    DateTime
+  dataVencimento    DateTime
+  preco             Decimal?
+}
