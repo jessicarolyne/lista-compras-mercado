@@ -1,0 +1,5 @@
+Trabalho de Conclusão de Curso - UNIVESP
+
+Aplicativo para gerenciamento de alimentos
+
+O objetivo desse projeto é desenvolver um aplicativo que seja capaz de receber uma lista de produtos que estão faltando e precisam ser reabastecidos. Ao reabastecer o estoque de determinado produto o usuário poderá informar quanto pagou e onde comprou, data de validade e quanto em média o produto irá durar. Com esses dados o aplicativo deverá notificar o usuário quando o prdouto está próximo de acabar ou vencer e caso o usuário esteja em processo de compra do produto, ele poderá ver um grafico com a média dos ultimos preços desse produto e até mesmo em qual mercado foi mais barato. Futuramente a ideia é fazer com que os usuários possam compartilhar essa informação de onde determinado produto está mais barato e o aplicativo poderá sugerir de acordo com a lista de produtos que precisam ser comprados, onde esses produtos estão mais baratos.
