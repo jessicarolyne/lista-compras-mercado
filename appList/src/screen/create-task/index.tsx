@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const Button = () => {
+const CreateTask = () => {
   return (
     <View>
-      <Text>Button</Text>
+      <Text>CreateTask</Text>
     </View>
   )
 }
-export default Button
+export default CreateTask
