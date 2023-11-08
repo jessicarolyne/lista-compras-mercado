@@ -1,18 +1,40 @@
-import fastify from 'fastify'
-import { PrismaClient } from '@prisma/client'
-// criando uma API
-const app = fastify()
-const prisma = new PrismaClient()
+import 'dotenv/config'
 
-app.get('/login', async () => {
-  const users = await prisma.user.findMany()
-  return users
+import fastify from 'fastify'
+import cors from '@fastify/cors'
+import jwt from '@fastify/jwt'
+import multipart from '@fastify/multipart'
+import { listaCompras } from './routes/memories'
+import { authRoutes } from './routes/auth'
+import { lista } from './routes/lista'
+import { resolve } from 'node:path'
+
+const app = fastify()
+
+app.register(multipart)
+
+app.register(require('@fastify/static'), {
+  root: resolve(__dirname, '../uploads'),
+  prefix: '/uploads',
 })
+
+app.register(cors, {
+  origin: true,
+})
+
+app.register(jwt, {
+  secret: 'spacetime',
+})
+
+app.register(authRoutes)
+app.register(uploadRoutes)
+app.register(listaCompras)
 
 app
   .listen({
     port: 3333,
+    host: '0.0.0.0',
   })
   .then(() => {
-    console.log('SERVER')
+    console.log('🚀 HTTP server running on port http://localhost:3333')
   })
