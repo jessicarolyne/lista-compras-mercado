@@ -44,3 +44,6 @@ CREATE TABLE "ListaProduto" (
     CONSTRAINT "ListaProduto_mercadoID_fkey" FOREIGN KEY ("mercadoID") REFERENCES "Mercado" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "ListaProduto_listaID_fkey" FOREIGN KEY ("listaID") REFERENCES "Lista" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
